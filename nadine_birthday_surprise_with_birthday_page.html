@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#26133f">
+<title>A Little Universe for Nadine ✨</title>
+<style>
+:root{--pink:#ff9fca;--rose:#ff5da2;--lav:#b7a2ff;--blue:#91dfff;--ink:#211334;--glass:rgba(255,255,255,.12)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#160d2c;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 15% 15%,#65317e 0,transparent 40%),radial-gradient(ellipse at 85% 25%,#243f80 0,transparent 35%),radial-gradient(ellipse at 55% 90%,#7d275f 0,transparent 45%),linear-gradient(145deg,#160d2c,#24143d 60%,#101b39)}
+#stars,.float-layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+.star{position:absolute;background:white;border-radius:50%;opacity:.6;animation:twinkle 2.8s infinite alternate}
+@keyframes twinkle{to{opacity:.12;transform:scale(.5)}}
+.float{position:fixed;bottom:-50px;pointer-events:none;z-index:20;animation:rise linear forwards;filter:drop-shadow(0 0 8px #ff9fca66)}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;background:#180e2bd9;backdrop-filter:blur(14px);border-bottom:1px solid #ffffff17}
+.brand{font-weight:800;letter-spacing:.4px;color:#ffd8ee}
+.pill,.btn{border:1px solid #ffffff40;color:#fff;background:#ffffff12;border-radius:999px;padding:11px 16px;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover,.pill:hover{transform:translateY(-2px);background:#ffffff25}
+.btn.primary{background:linear-gradient(110deg,#ff70ad,#a98aff);border:0;box-shadow:0 8px 25px #b65ce966}
+.btn.gold{background:linear-gradient(110deg,#ffe3a0,#ffb2cf);color:#3b204b;border:0}
+main{width:min(980px,100%);margin:auto;padding:16px}
+.screen{display:none;min-height:75vh;padding:30px 0 52px;animation:fade .55s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero{text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:76vh}
+.eyebrow{font-size:.82rem;letter-spacing:2px;text-transform:uppercase;color:#e6d7ff}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(2.5rem,10vw,5.4rem);line-height:1.08;margin:15px 0;background:linear-gradient(100deg,#fff,#ffc7e5 45%,#c7c1ff);color:transparent;background-clip:text;-webkit-background-clip:text}
+h2{font-size:clamp(1.8rem,6vw,3rem);margin-bottom:10px}
+h3{font-size:1.25rem}
+p{line-height:1.9;color:#f2eafa}
+.lead{max-width:620px;font-size:1.05rem}
+.hero-orb{width:150px;height:150px;display:grid;place-items:center;border-radius:50%;font-size:5rem;margin:15px auto;background:radial-gradient(circle at 35% 25%,#fff8,#ffb8df33 40%,#a68aff22);border:1px solid #ffffff45;box-shadow:0 0 70px #b47cff55,inset 0 0 35px #ffb8df44;animation:floaty 4s ease-in-out infinite}
+@keyframes floaty{50%{transform:translateY(-12px) rotate(4deg)}}
+.center{text-align:center}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:22px 0}
+.panel,.gift-card,.letter,.quiz-box,.wish-card{border:1px solid #ffffff24;background:linear-gradient(145deg,#ffffff18,#ffffff08);backdrop-filter:blur(12px);border-radius:24px;padding:20px;box-shadow:0 12px 36px #05020e25}
+.gift-card{text-align:center;cursor:pointer;min-height:175px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:.25s;position:relative;overflow:hidden}
+.gift-card:hover{transform:translateY(-5px);border-color:#ffb8df88}
+.gift-icon{font-size:3.5rem;filter:drop-shadow(0 8px 15px #ff77b344)}
+.gift-card small{color:#e7d9fa}
+.gift-card.opened{background:linear-gradient(145deg,#ff9fca33,#a78bfa2c);border-color:#ffc2e5aa}
+.result{margin-top:12px;padding:12px;border-radius:16px;background:#160d2c88;font-size:.96rem;line-height:1.8;color:#fff}
+.hidden{display:none!important}
+.row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+.progress-wrap{height:7px;border-radius:99px;background:#ffffff22;overflow:hidden;margin:18px auto;max-width:340px}
+#progress{height:100%;width:0;background:linear-gradient(90deg,#ff80b8,#c2aaff,#91dfff);transition:width .4s}
+.meter{font-size:.9rem;color:#e9dfff}
+.letter{max-width:700px;margin:22px auto;padding:clamp(20px,5vw,38px);line-height:2.1;font-size:1.05rem}
+.letter .signature{font-size:1.3rem;color:#ffd2eb;font-weight:800}
+.big-emoji{font-size:4rem}
+.answer{display:block;width:100%;margin:9px 0;text-align:right;border-radius:16px;padding:14px;background:#ffffff12;color:#fff;border:1px solid #ffffff25;cursor:pointer;font-size:1rem}
+.answer:hover{background:#ffffff26}
+#quizFeedback{min-height:40px;margin-top:12px;color:#ffe0f0}
+.flower-garden{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.flower{padding:18px 6px;border-radius:20px;border:1px solid #ffffff24;background:#ffffff10;color:#fff;font-size:2.4rem;cursor:pointer}
+.flower span{display:block;font-size:.8rem;margin-top:7px}
+.wish-output{min-height:64px}
+.final-card{max-width:680px;margin:25px auto;padding:clamp(26px,7vw,55px);border-radius:30px;text-align:center;background:linear-gradient(145deg,#ffffff22,#ffffff0a);border:1px solid #ffe1f466;box-shadow:0 0 60px #e36ebd24}
+.final-card h2{font-size:clamp(2.2rem,8vw,4rem);background:linear-gradient(100deg,#fff,#ffc4e3,#d5c7ff);background-clip:text;color:transparent;-webkit-background-clip:text}
+.final-card .sign{font-size:1.35rem;font-weight:800;color:#ffd6eb}
+.footer-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:28px;padding-top:18px;border-top:1px solid #ffffff1c}
+.footer-nav .btn{min-width:110px}
+.tiny{font-size:.8rem;color:#cfc0e8}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:50;background:#fff;color:#381e4d;padding:12px 18px;border-radius:999px;font-weight:800;box-shadow:0 8px 25px #0004;display:none;max-width:90%;text-align:center}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{min-height:80vh}.gift-card{min-height:195px}}
+@media(max-width:390px){.grid{gap:9px}.gift-card{padding:14px 8px}.topbar{padding:10px}.pill{padding:9px 11px}}
+</style>
+</head>
+<body>
+<div id="stars"></div><div class="float-layer" id="floatLayer"></div>
+<header class="topbar">
+  <div class="brand">✨ NADINE'S LITTLE UNIVERSE</div>
+  <button class="pill" id="musicBtn" onclick="toggleMusic()">♫ تشغيل الموسيقى</button>
+</header>
+<main>
+<section class="screen active" id="s0">
+  <div class="hero">
+    <div class="eyebrow">A tiny universe made just for you</div>
+    <div class="hero-orb">🎁</div>
+    <h1>Nadine</h1>
+    <h2>مستعدة لمغامرة صغيرة؟ 💗</h2>
+    <p class="lead">فيه مفاجآت كتير مستخبية هنا… هدايا، ضحك، أمنيات، ورسالة من القلب في الآخر. افتحي كل حاجة براحتك ✨</p>
+    <div class="row"><button class="btn primary" onclick="go(1);startMusic()">OPEN YOUR SURPRISE ✨</button><button class="btn gold" onclick="showBirthday()">تهنئة عيد الميلاد 🎂💗</button><button class="btn" onclick="toggleMusic()">🎵 شغّلي الموسيقى</button></div>
+    <p class="tiny">نصيحة صغيرة: ارفعي الصوت شوية، واستكشفي كل زرار 💫</p>
+  </div>
+</section>
+
+<section class="screen" id="s1">
+  <div class="center"><div class="eyebrow">CHAPTER 01 · THE GIFT ROOM</div><h2>أوضة الهدايا 🎁</h2><p>كل صندوق جواه حاجة مختلفة… افتحيهم كلهم، مفيش غش! 😂💖</p><div class="meter" id="giftMeter">فتحتي 0 من 9 هدايا</div><div class="progress-wrap"><div id="progress"></div></div></div>
+  <div class="grid" id="giftGrid"></div>
+  <div class="row"><button class="btn gold" onclick="openAll()">أنا مستعجلة! افتحي الكل 😂</button></div>
+  <div class="footer-nav"><button class="btn" onclick="go(0)">← البداية</button><button class="btn primary" onclick="go(2)">نكمل المغامرة →</button></div>
+</section>
+
+<section class="screen" id="s2">
+  <div class="center"><div class="eyebrow">CHAPTER 02 · LAUGH BREAK</div><h2>اختبار العبقرية الخطير 😂</h2><p>مفيش درجات… بس فيه حكم على الإجابات من لجنة الهزار الدولية.</p></div>
+  <div class="quiz-box">
+    <div class="big-emoji center">🧠✨</div><h3 id="question">السؤال الأول</h3><div id="answers"></div><div id="quizFeedback"></div>
+    <div class="row"><button class="btn primary" onclick="nextQuestion()">السؤال اللي بعده ➜</button><button class="btn" onclick="resetQuiz()">نبدأ من الأول</button></div>
+  </div>
+  <div class="footer-nav"><button class="btn" onclick="go(1)">← الهدايا</button><button class="btn primary" onclick="go(3)">فيه رسائل كمان →</button></div>
+</section>
+
+<section class="screen" id="s3">
+  <div class="center"><div class="eyebrow">CHAPTER 03 · FRIENDSHIP MAIL</div><h2>ظرف جاي مخصوص ليكي 💌</h2><p>اختاري ظرف، وكل واحد فيه رسالة مختلفة.</p></div>
+  <div class="grid">
+    <div class="gift-card" onclick="letter(0)"><div class="gift-icon">💌</div><h3>ظرف اللطافة</h3><small>افتحيني لو محتاجة ابتسامة</small></div>
+    <div class="gift-card" onclick="letter(1)"><div class="gift-icon">🌷</div><h3>ظرف التشجيع</h3><small>افتحيني وقت ما تحتاجي دفعة</small></div>
+    <div class="gift-card" onclick="letter(2)"><div class="gift-icon">😂</div><h3>ظرف الهزار</h3><small>تحذير: محتوى سخيف جدًا</small></div>
+  </div>
+  <div class="letter hidden" id="letterBox"></div>
+  <div class="footer-nav"><button class="btn" onclick="go(2)">← الاختبار</button><button class="btn primary" onclick="go(4)">حديقة الأمنيات →</button></div>
+</section>
+
+<section class="screen" id="s4">
+  <div class="center"><div class="eyebrow">CHAPTER 04 · WISH GARDEN</div><h2>حديقة الأمنيات 🌸</h2><p>اضغطي على كل زهرة وخدي أمنية حلوة لسنتك الجديدة.</p></div>
+  <div class="flower-garden">
+    <button class="flower" onclick="wish(0)">🌷<span>فرحة</span></button>
+    <button class="flower" onclick="wish(1)">🌻<span>نجاح</span></button>
+    <button class="flower" onclick="wish(2)">🌹<span>حب وخير</span></button>
+    <button class="flower" onclick="wish(3)">🪻<span>راحة بال</span></button>
+    <button class="flower" onclick="wish(4)">🌼<span>مغامرات</span></button>
+    <button class="flower" onclick="wish(5)">🌺<span>أحلام</span></button>
+  </div>
+  <div class="wish-card center"><div class="big-emoji">✨</div><p class="wish-output" id="wishOutput">لسه فيه أمنيات كتير مستخبية… اختاري زهرة 💖</p><div class="row"><button class="btn primary" onclick="randomWish()">اختاريلي أمنية عشوائية 🎲</button></div></div>
+  <div class="footer-nav"><button class="btn" onclick="go(3)">← الرسائل</button><button class="btn primary" onclick="go(5)">لعبة الذاكرة →</button></div>
+</section>
+
+<section class="screen" id="s5">
+  <div class="center"><div class="eyebrow">CHAPTER 05 · MEMORY MAGIC</div><h2>قلوب بتستخبى 💗</h2><p>اختاري كروت وشوفي المفاجآت. حاولي تلاقي كل الرموز المتشابهة!</p></div>
+  <div class="grid" id="memoryGrid"></div><p class="center" id="memoryStatus">لقيتي 0 من 4 أزواج</p>
+  <div class="row"><button class="btn" onclick="setupMemory()">إعادة اللعبة 🔄</button><button class="btn primary" onclick="go(6)">المفاجأة الكبيرة →</button></div>
+  <div class="footer-nav"><button class="btn" onclick="go(4)">← الأمنيات</button><button class="btn primary" onclick="go(6)">نكمل →</button></div>
+</section>
+
+<section class="screen" id="s6">
+  <div class="hero">
+    <div class="eyebrow">CHAPTER 06 · GRAND FINALE</div>
+    <div class="hero-orb">🎆</div><h2>لحظة الاحتفال يا Nadine!</h2>
+    <p class="lead">وصلتي للنهاية… بس قبل آخر صفحة، لازم نعمل دوشة فرح محترمة! اضغطي الزر وخلي السما كلها نور ✨</p>
+    <div class="row"><button class="btn primary" onclick="grandFinale()">ابدئي الاحتفال 🎉</button><button class="btn gold" onclick="go(7)">آخر رسالة من القلب 💌</button></div>
+    <div id="finaleMessage" class="letter hidden">كل سنة وإنتِ طيبة يا Nadine! 💗 أتمنى سنتك الجديدة تكون مليانة ضحك، نجاح، ناس طيبين، ومفاجآت أجمل من دي بكتير. إنتِ تستاهلي كل خير. 🌷</div>
+  </div>
+  <div class="footer-nav"><button class="btn" onclick="go(5)">← لعبة الذاكرة</button><button class="btn primary" onclick="go(7)">آخر صفحة →</button></div>
+</section>
+
+<section class="screen" id="s7">
+  <div class="center"><div class="eyebrow">A LITTLE NOTE, FROM THE HEART</div><div class="final-card">
+    <div class="big-emoji">💗🌙✨</div>
+    <h2>هدية من القلب ♥️</h2>
+    <p>يا Nadine، أتمنى إن الهدية دي تكون رسمت على وشك ابتسامة، وإن كل ما تفتكريها تفتكري إن فيه صديق حب يفرّحك ويخلّي يومك مميز. 🌷</p>
+    <p>أتمنالك أيام مليانة راحة بال، وضحك من القلب، ونجاحات تفرّحك، وأحلام تتحقق واحدة واحدة. خليكي دايمًا منوّرة بطريقتك الحلوة. 💫</p>
+    <p>شكرًا على الضحك والذكريات الحلوة، ويا رب اللي جاي يكون أحلى بكتير.</p>
+    <div class="sign">صديقك ESLAM ♥️</div>
+    <div class="row"><button class="btn primary" onclick="grandFinale()">احتفال أخير 🎉</button><button class="btn" onclick="go(0)">نعيش المفاجأة من الأول ↺</button></div>
+  </div><p class="tiny">صُنعت بابتسامة، واتقدمت من القلب 💝</p></div>
+</section>
+
+<section class="screen" id="birthdayScreen">
+  <div class="hero">
+    <div class="eyebrow">A SPECIAL DAY JUST FOR YOU ✨</div>
+    <div class="hero-orb">🎂🎈</div>
+    <h1>Happy Birthday, Nadine! 💗</h1>
+    <h2>كل سنة وإنتِ طيبة يا نادين 🎉🌷</h2>
+    <p class="lead">النهارده يوم مميز عشان هو اليوم اللي الدنيا نورت فيه بوجودك! 💖</p>
+    <div class="final-card">
+      <div class="big-emoji">🎁🌸🦋✨</div>
+      <p>يا نادين، أتمنالك سنة جديدة مليانة ضحك من القلب، وراحة بال، ونجاح في كل خطوة، وأمنيات حلوة تتحقق واحدة واحدة. يا رب تفضلي دايمًا محاطة بالناس اللي بتحبك وبتتمنى لك الخير، وتكون أيامك الجاية أجمل من كل اللي فات. 💕</p>
+      <p>ابتسمي، افرحي، وافتكري إنك تستاهلي كل حاجة حلوة في الدنيا. النهارده يومك، والفرحة لازم تبقى على قدّك! 🥳💗</p>
+      <div class="sign">مع أطيب الأمنيات ♥️</div>
+    </div>
+    <div class="row">
+      <button class="btn primary" onclick="birthdayCelebrate()">احتفال مخصوص ليكي 🎉</button>
+      <button class="btn gold" onclick="go(1)">افتحي الهدايا 🎁</button>
+      <button class="btn" onclick="go(0)">← البداية</button>
+    </div>
+  </div>
+</section>
+
+</main>
+<div id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+const stars=$('stars');
+for(let i=0;i<75;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.width=s.style.height=(1+Math.random()*3)+'px';s.style.animationDelay=Math.random()*3+'s';stars.appendChild(s)}
+const gifts=[
+['💝','هدية الحظ','الحظ الحلو مش صدفة… ساعات بيبدأ بابتسامة منك!'],
+['🧁','كيكة افتراضية','اتفضلي قطعة كيكة من غير سعرات… بس ممنوع تديها لحد 😂'],
+['🌟','نجمة اليوم','النجمة دي باسمك يا Nadine. خليكي دايمًا لامعة!'],
+['😂','شهادة رسمية','نُعلن إنك مؤهلة رسميًا للضحك على أي حاجة حتى لو مش مضحكة.'],
+['🦋','فراشة الأمنيات','يا رب كل حاجة حلوة بتتمنيها تقرب منك زي الفراشة للورد.'],
+['🎧','لحظة هدوء','خدي نفس عميق… إنتِ تستاهلي الهدوء والراحة والفرحة.'],
+['🍀','حظ مضاعف','+100 حظ، +200 ضحك، و∞ ذكريات حلوة!'],
+['🪄','تعويذة السعادة','بسم الضحكة الحلوة… أي يوم وحش يتحول ليوم ألطف!'],
+['🏆','كأس الصديقة الرائعة','الجائزة دي بتروح لشخص يستاهل يوم جميل ومليان حب وخير.']
+];
+let openedGifts=new Set();
+function renderGifts(){ $('giftGrid').innerHTML='';gifts.forEach((g,i)=>{let d=document.createElement('div');d.className='gift-card'+(openedGifts.has(i)?' opened':'');d.innerHTML=`<div class="gift-icon">${openedGifts.has(i)?'✨':'🎁'}</div><h3>${g[1]}</h3><small>${openedGifts.has(i)?'اتفتحت الهدية 💖':'اضغطي عشان تفتحيها'}</small>${openedGifts.has(i)?`<div class="result">${g[0]} ${g[2]}</div>`:''}`;d.onclick=()=>openGift(i);$('giftGrid').appendChild(d)})}
+function openGift(i){if(openedGifts.has(i))return;openedGifts.add(i);renderGifts();$('giftMeter').textContent=`فتحتي ${openedGifts.size} من ${gifts.length} هدايا`; $('progress').style.width=(openedGifts.size/gifts.length*100)+'%';burst(12);if(openedGifts.size===gifts.length)toast('فتحتي كل الهدايا! إنتِ بطلة المفاجآت 🏆💖');}
+function openAll(){gifts.forEach((_,i)=>openedGifts.add(i));renderGifts();$('giftMeter').textContent=`فتحتي ${openedGifts.size} من ${gifts.length} هدايا`;$('progress').style.width='100%';burst(40);toast('كل الهدايا اتفتحت! 🎁🎉')}
+renderGifts();
+const qs=[
+['لو الضحك كان رياضة، كنتي هتبقي…',['بطلة العالم 🏆','لسه في الإحماء 😂','مدربة المنتخب 🤣'],0,'واضح إن عندك موهبة عالمية في نشر البهجة!'],
+['أهم حاجة في عيد الميلاد؟',['الكيكة طبعًا 🍰','الهدايا 🎁','الناس الحلوة والكيكة كمان 😌'],2,'إجابة دبلوماسية ممتازة… أخدتي نجمة! ⭐'],
+['لو يومك بقى فيلم، اسمه إيه؟',['مهمة إنقاذ الشوكولاتة','ضحك بدون سبب','كل ده وأكثر 😂'],2,'الإنتاج بيعلن: الجزء التاني قريب! 🎬']
+];let qi=0;
+function renderQ(){let q=qs[qi];$('question').textContent=q[0];$('answers').innerHTML='';q[1].forEach((a,i)=>{let b=document.createElement('button');b.className='answer';b.textContent=a;b.onclick=()=>{$('quizFeedback').textContent=(i===q[2]?'صح عليكي! 🎉 ':'إجابة مقبولة من لجنة الهزار 😂 ')+q[3];burst(5)};$('answers').appendChild(b)});$('quizFeedback').textContent=''}
+function nextQuestion(){qi=(qi+1)%qs.length;renderQ()}function resetQuiz(){qi=0;renderQ()}renderQ();
+const letters=[
+'لو يومك كان تقيل، افتكري إنك تستاهلي لحظات حلوة كتير، وإن ابتسامتك مش حاجة بسيطة… ساعات بتخلّي اليوم ألطف للي حواليكي. 💗',
+'أتمنالك شجاعة تجربي حاجات جديدة، وصبر وقت الصعب، وفرحة كبيرة بكل خطوة بتنجحي فيها. حتى الإنجازات الصغيرة تستاهل الاحتفال. 🌷',
+'تنبيه رسمي: الضحك الكتير ممكن يسبب وجع بطن، وذكريات محرجة تتعاد في كل قعدة… استخدمي الهزار بمسؤولية! 😂'
+];
+function letter(i){
+  const box = $('letterBox');
+  box.innerHTML = `<div class="big-emoji">${['💌','🌷','🤣'][i]}</div><p>${letters[i]}</p>`;
+  box.classList.remove('hidden');
+  burst(5);
+  // Bring the newly opened message into view on mobile screens.
+  setTimeout(() => box.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+}
+const wishes=['يا رب تضحكي من قلبك كل يوم، حتى لو على حاجة تافهة جدًا 😂💗','يا رب تلاقي فرص حلوة وتنجحي في كل حاجة بتتعبي عشانها 🌟','يا رب يحيط بيكي ناس صادقة تتمنالك الخير دايمًا 🌷','يا رب قلبك يرتاح، وتلاقي سلام وسط زحمة الأيام 🌙','يا رب تعيشي مغامرات جديدة وتحكي عنها وإنتِ بتضحكي 🦋','يا رب أحلامك تكبر وتتحقق واحدة واحدة، وأحلى مما تخيلتي ✨'];
+function wish(i){$('wishOutput').textContent=wishes[i];burst(4)}function randomWish(){wish(Math.floor(Math.random()*wishes.length))}
+let memValues=[],first=null,lock=false,matches=0;
+function setupMemory(){memValues=['🌸','🎁','💖','🦋','🌸','🎁','💖','🦋'].sort(()=>Math.random()-.5);first=null;lock=false;matches=0;$('memoryStatus').textContent='لقيتي 0 من 4 أزواج';$('memoryGrid').innerHTML='';memValues.forEach((v,i)=>{let b=document.createElement('button');b.className='gift-card';b.style.minHeight='100px';b.innerHTML='<span class="gift-icon">❔</span>';b.dataset.value=v;b.dataset.index=i;b.onclick=()=>flip(b);$('memoryGrid').appendChild(b)})}
+function flip(b){if(lock||b.classList.contains('matched')||b===first)return;b.innerHTML=`<span class="gift-icon">${b.dataset.value}</span>`;if(!first){first=b;return}if(first.dataset.value===b.dataset.value){first.classList.add('matched');b.classList.add('matched');first.style.borderColor=b.style.borderColor='#ffadd4';first=null;matches++;$('memoryStatus').textContent=`لقيتي ${matches} من 4 أزواج`;burst(3);if(matches===4)toast('برافو! لقيتي كل القلوب 💗')}else{lock=true;let old=first;first=null;setTimeout(()=>{old.innerHTML='<span class="gift-icon">❔</span>';b.innerHTML='<span class="gift-icon">❔</span>';lock=false},700)}}
+setupMemory();
+let current=0;function go(n){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$('s'+n).classList.add('active');current=n;window.scrollTo({top:0,behavior:'smooth'});if(n===6)burst(8)}
+function showBirthday(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $('birthdayScreen').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  burst(18);
+}
+function birthdayCelebrate(){
+  burst(70);
+  startMusic(true);
+  toast('كل سنة وإنتِ طيبة يا نادين! 🎂🎉💖');
+}
+function burst(count=12){const symbols=['💖','✨','🎉','🌸','⭐','🦋','🎊'];for(let i=0;i<count;i++){let e=document.createElement('span');e.className='float';e.textContent=symbols[Math.floor(Math.random()*symbols.length)];e.style.left=Math.random()*100+'vw';e.style.fontSize=(18+Math.random()*22)+'px';e.style.animationDuration=(3+Math.random()*3)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}
+function grandFinale(){ $('finaleMessage').classList.remove('hidden');burst(65);startMusic(true);toast('فرحة وفرحة وفرحة يا Nadine! 🎆💖')}
+let audio=null,musicLoop=null,musicOn=false,beat=0;
+function startMusic(upbeat=false){if(!audio){try{audio=new(window.AudioContext||window.webkitAudioContext)()}catch(e){toast('الموسيقى غير مدعومة في هذا المتصفح');return}}if(audio.state==='suspended')audio.resume();musicOn=true;$('musicBtn').textContent='♫ إيقاف الموسيقى';if(musicLoop)clearInterval(musicLoop);beat=0;const soft=[261.63,329.63,392,329.63,293.66,349.23,392,349.23];const happy=[523.25,587.33,659.25,783.99,659.25,587.33,523.25,392];const notes=upbeat?happy:soft;musicLoop=setInterval(()=>{if(!musicOn)return;const t=audio.currentTime;const osc=audio.createOscillator(),gain=audio.createGain();osc.type='sine';osc.frequency.value=notes[beat%notes.length];gain.gain.setValueAtTime(upbeat?.09:.055,t);gain.gain.exponentialRampToValueAtTime(.001,t+.48);osc.connect(gain);gain.connect(audio.destination);osc.start(t);osc.stop(t+.5);if(beat%4===0){const o=audio.createOscillator(),g=audio.createGain();o.type='triangle';o.frequency.value=notes[beat%notes.length]/2;g.gain.setValueAtTime(upbeat?.035:.02,t);g.gain.exponentialRampToValueAtTime(.001,t+.7);o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+.72)}beat++},upbeat?260:430)}
+function toggleMusic(){if(musicOn){musicOn=false;if(musicLoop)clearInterval(musicLoop);if(audio)audio.suspend();$('musicBtn').textContent='♫ تشغيل الموسيقى'}else startMusic(current>=6)}
+let toastTimer;function toast(msg){$('toast').textContent=msg;$('toast').style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').style.display='none',2600)}
+</script>
+</body>
+</html>
